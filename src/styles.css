@@ -1,0 +1,203 @@
+:root {
+  color-scheme: dark;
+  --bg: #05060a;
+  --panel: rgba(16, 19, 31, 0.78);
+  --panel-strong: rgba(23, 28, 44, 0.92);
+  --text: #f7f8ff;
+  --muted: #9aa4b8;
+  --line: rgba(255, 255, 255, 0.11);
+  --mint: #55f0c2;
+  --violet: #7c5cff;
+  --amber: #ffcf70;
+  --danger: #ff7a90;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(124, 92, 255, 0.3), transparent 30rem),
+    radial-gradient(circle at 82% 18%, rgba(85, 240, 194, 0.18), transparent 28rem),
+    var(--bg);
+}
+
+button, a { font: inherit; }
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 24px;
+  padding: 28px 0;
+}
+
+.hero-panel, .insight-panel > section {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(24px);
+}
+
+.hero-panel {
+  border-radius: 36px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.topbar, .status-grid, .estimate-row, .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--mint);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1, h2 { margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2rem, 5vw, 4.6rem); letter-spacing: -0.08em; }
+h2 { font-size: 1.25rem; }
+
+.analysis-orb {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  text-decoration: none;
+  background: radial-gradient(circle at 30% 20%, #ffffff, var(--mint) 12%, var(--violet) 62%, #111428);
+  box-shadow: 0 0 34px rgba(85, 240, 194, 0.35);
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.metric-card {
+  min-height: 118px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.metric-card span, .metric-card small { color: var(--muted); display: block; }
+.metric-card strong { display: block; margin: 10px 0; font-size: 2rem; letter-spacing: -0.05em; }
+.metric-card.deficit strong { color: var(--mint); }
+
+.camera-card {
+  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: 22px;
+  place-items: center;
+}
+
+.camera-frame {
+  position: relative;
+  width: min(100%, 560px);
+  aspect-ratio: 0.95;
+  border-radius: 36px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.08), transparent 32%),
+    radial-gradient(circle at center, rgba(85,240,194,.12), transparent 38%),
+    #090b12;
+  box-shadow: inset 0 0 80px rgba(85, 240, 194, 0.1), 0 0 55px rgba(124, 92, 255, 0.16);
+}
+
+.camera-frame p { margin: 0; font-size: 2rem; font-weight: 750; }
+.camera-frame span { color: var(--muted); }
+.scan-line {
+  position: absolute;
+  inset: 18% 12%;
+  border-top: 2px solid rgba(85, 240, 194, 0.7);
+  filter: drop-shadow(0 0 18px var(--mint));
+  animation: scan 3s ease-in-out infinite;
+}
+.lens-glow { position: absolute; inset: 18%; border-radius: 50%; border: 1px solid rgba(255,255,255,.09); }
+
+@keyframes scan { 0%, 100% { transform: translateY(-80px); opacity: .35; } 50% { transform: translateY(80px); opacity: 1; } }
+
+.meal-selector, .segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.meal-chip, .segmented button {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.meal-chip.active, .segmented button.selected {
+  background: rgba(85, 240, 194, 0.16);
+  border-color: rgba(85, 240, 194, 0.6);
+  color: var(--mint);
+}
+
+.shutter {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,.18);
+  display: grid;
+  place-items: center;
+  background: transparent;
+  cursor: pointer;
+}
+.shutter span { width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, var(--mint), var(--violet)); }
+
+.insight-panel { display: grid; gap: 18px; }
+.insight-panel > section { border-radius: 28px; padding: 22px; }
+
+.food-list { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 10px; }
+.food-list li { display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.055); color: var(--muted); }
+.food-list b { color: var(--text); }
+.estimate-row { padding: 16px 0; border-top: 1px solid var(--line); }
+.estimate-row strong { font-size: 1.8rem; color: var(--mint); }
+.confidence-pill { padding: 11px 13px; border-radius: 16px; background: rgba(255, 207, 112, 0.12); color: var(--amber); }
+.confidence-pill.high { background: rgba(85, 240, 194, 0.12); color: var(--mint); }
+.confidence-pill.low { background: rgba(255, 122, 144, 0.12); color: var(--danger); }
+.adjustments p { margin: 16px 0 8px; color: var(--muted); }
+
+.flow-bars { display: grid; gap: 16px; margin-top: 18px; }
+.flow-bars div { display: grid; grid-template-columns: 1fr auto; gap: 7px 12px; align-items: center; }
+.flow-bars span { grid-column: 1 / -1; height: 9px; border-radius: 999px; background: linear-gradient(90deg, var(--mint) var(--bar), rgba(255,255,255,.08) var(--bar)); }
+.flow-bars b { font-weight: 650; }
+.flow-bars em { color: var(--muted); font-style: normal; }
+
+.trend-chart { width: 100%; margin-top: 12px; }
+.trend-chart text { fill: var(--muted); font-size: 14px; }
+.recommendation { border-left: 3px solid var(--mint); padding-left: 14px; color: var(--muted); }
+.recommendation b { color: var(--text); }
+
+@media (max-width: 900px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .status-grid { grid-template-columns: 1fr; }
+  .camera-frame { aspect-ratio: 1.15; }
+}

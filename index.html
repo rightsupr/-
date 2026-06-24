@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05060a" />
+    <title>轻缺口 CalorieLens</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-panel" aria-labelledby="app-title">
+        <nav class="topbar" aria-label="今日状态">
+          <div>
+            <p class="eyebrow">CalorieLens · 轻缺口</p>
+            <h1 id="app-title">拍下今天，预测趋势</h1>
+          </div>
+          <a class="analysis-orb" href="#analytics" aria-label="进入分析页">分析</a>
+        </nav>
+
+        <div class="status-grid" aria-label="今日核心数据">
+          <article class="metric-card deficit">
+            <span>今日缺口</span>
+            <strong id="today-deficit">-760 kcal</strong>
+            <small>可信度 <b id="today-confidence">72%</b></small>
+          </article>
+          <article class="metric-card">
+            <span>摄入</span>
+            <strong id="intake-total">1,580</strong>
+            <small>kcal · 估算区间 1450–1780</small>
+          </article>
+          <article class="metric-card">
+            <span>消耗</span>
+            <strong id="burn-total">2,340</strong>
+            <small>静息 1980 + 活动 360</small>
+          </article>
+        </div>
+
+        <section class="camera-card" aria-labelledby="camera-title">
+          <div class="camera-frame">
+            <div class="scan-line"></div>
+            <div class="lens-glow"></div>
+            <p id="camera-title">拍下这一餐</p>
+            <span>我来帮你记住趋势</span>
+          </div>
+          <div class="meal-selector" role="group" aria-label="选择餐次">
+            <button class="meal-chip active" data-meal="早餐">早餐</button>
+            <button class="meal-chip" data-meal="午餐">午餐</button>
+            <button class="meal-chip" data-meal="晚餐">晚餐</button>
+            <button class="meal-chip" data-meal="加餐">加餐</button>
+          </div>
+          <button class="shutter" id="capture-button" type="button" aria-label="模拟拍照识别">
+            <span></span>
+          </button>
+        </section>
+      </section>
+
+      <aside class="insight-panel" aria-label="识别结果与趋势洞察">
+        <section class="recognition-card" aria-live="polite">
+          <div class="section-heading">
+            <p class="eyebrow">识别结果</p>
+            <h2 id="meal-title">午餐 · 商圈套餐</h2>
+          </div>
+          <ul id="food-list" class="food-list"></ul>
+          <div class="estimate-row">
+            <span>估算摄入</span>
+            <strong id="meal-calories">850 kcal</strong>
+          </div>
+          <div class="confidence-pill medium" id="confidence-pill">可信度：中 · 油量和米饭量不确定</div>
+
+          <div class="adjustments" aria-label="快速修正">
+            <p>你觉得份量：</p>
+            <div class="segmented" data-adjustment="portion">
+              <button data-value="少">偏少</button>
+              <button class="selected" data-value="正常">正常</button>
+              <button data-value="多">偏多</button>
+            </div>
+            <p>油量：</p>
+            <div class="segmented" data-adjustment="oil">
+              <button data-value="少油">少油</button>
+              <button class="selected" data-value="正常">正常</button>
+              <button data-value="重油">重油</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="today-card" aria-labelledby="today-title">
+          <div class="section-heading">
+            <p class="eyebrow">今日数据</p>
+            <h2 id="today-title">适合看趋势，不建议当作精确值</h2>
+          </div>
+          <div class="flow-bars">
+            <div><span style="--bar: 68%"></span><b>吃进来</b><em>1,580 kcal</em></div>
+            <div><span style="--bar: 100%"></span><b>消耗掉</b><em>2,340 kcal</em></div>
+            <div><span style="--bar: 38%"></span><b>剩下的</b><em>-760 kcal</em></div>
+          </div>
+        </section>
+
+        <section class="trend-card" id="analytics" aria-labelledby="trend-title">
+          <div class="section-heading">
+            <p class="eyebrow">趋势分析</p>
+            <h2 id="trend-title">按最近 7 天趋势，下周可能下降 0.5–1.0 kg</h2>
+          </div>
+          <svg class="trend-chart" viewBox="0 0 420 180" role="img" aria-label="体重预测区间曲线">
+            <defs>
+              <linearGradient id="band" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#55f0c2" stop-opacity="0.22" />
+                <stop offset="100%" stop-color="#7c5cff" stop-opacity="0.04" />
+              </linearGradient>
+            </defs>
+            <path d="M20 62 C90 72 140 78 200 90 C270 105 330 116 400 130 L400 154 C330 138 270 128 200 112 C140 98 90 92 20 84 Z" fill="url(#band)" />
+            <path d="M20 73 C90 82 140 88 200 101 C270 116 330 127 400 142" fill="none" stroke="#55f0c2" stroke-width="4" stroke-linecap="round" />
+            <path d="M20 150 H400 M20 30 H400" stroke="rgba(255,255,255,.1)" />
+            <text x="20" y="24">82.7kg</text>
+            <text x="286" y="168">9/26 · 70.8kg</text>
+          </svg>
+          <div class="recommendation">
+            <b>本周建议</b>
+            <p>午餐平均比建议高 220 kcal。优先把午餐主食减少 1/3，而不是继续压低晚餐。</p>
+          </div>
+        </section>
+      </aside>
+    </main>
+    <script src="./src/app.js"></script>
+  </body>
+</html>
