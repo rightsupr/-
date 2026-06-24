@@ -5,7 +5,7 @@ const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('src/styles.css', 'utf8');
 const js = fs.readFileSync('src/app.js', 'utf8');
 
-assert.match(html, /拍下今天，预测趋势/);
+assert.match(html, /轻轻记录，看见变化/);
 assert.match(html, /今日缺口/);
 assert.match(html, /趋势分析/);
 assert.match(css, /camera-frame/);
